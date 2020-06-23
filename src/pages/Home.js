@@ -11,6 +11,7 @@ import { AppBar } from '@material-ui/core';
 import Tiles from '../components/Tiles'
 import Grid from '@material-ui/core/Grid';
 import Map from '../components/Map'
+import DrawerComponent from '../components/Drawer'
 
 
 
@@ -24,6 +25,8 @@ class Home extends React.Component {
       consolidatedDeltaCount : [],
       consolidatedCount : []
     }
+    const clientID = 'rXMuQe8V4XLaYeLoefdvlj7nB2BAUKd8';
+    const domainName = 'dev-vknx01a2.auth0.com';
     this.getDatafromJSON = this.getDatafromJSON.bind(this);
   }
   createRows(){
@@ -39,7 +42,7 @@ class Home extends React.Component {
     fetch('https://api.covid19india.org/data.json').
     then((response)=>response.json()).
     then((findResponse)=>{
-      this.setState({consolidatedDeltaCount:findResponse.key_values[0]});
+      this.setState({consolidatedDeltaCount:findResponse.statewise[0]});
       this.setState({consolidatedCount:findResponse.statewise[0]})
     })
   }
@@ -49,16 +52,15 @@ class Home extends React.Component {
   render(){
   return (
     <div>
-    <AppBar style={{height:48}}></AppBar>
     <div style={{flexDirection:'row',display:'flex'}}>
     <TableContainer style={{width:700,marginTop:60}} component={Paper}>
     <h4 style={{paddingLeft:10}}>Corona Cases Across INDIA Summarized</h4>
     <div style={{flexDirection:'row',display:'flex'}}>
-        <Tiles value="Confirmed" cardColor="#ffecb3" countTotal={this.state.consolidatedCount.confirmed} countDelta={this.state.consolidatedDeltaCount.confirmeddelta}></Tiles>
+        <Tiles value="Confirmed" cardColor="#ffecb3" countTotal={this.state.consolidatedCount.confirmed} countDelta={this.state.consolidatedDeltaCount.deltaconfirmed}></Tiles>
         <div style={{width:25}}></div>
-        <Tiles value="Recovered" cardColor="#c5e1a5" countTotal={this.state.consolidatedCount.recovered} countDelta={this.state.consolidatedDeltaCount.recovereddelta}></Tiles>
+        <Tiles value="Recovered" cardColor="#c5e1a5" countTotal={this.state.consolidatedCount.recovered} countDelta={this.state.consolidatedDeltaCount.deltarecovered}></Tiles>
         <div style={{width:25}}></div>
-        <Tiles value="Deceased" cardColor="#ef5350" countTotal={this.state.consolidatedCount.deaths} countDelta={this.state.consolidatedDeltaCount.deceaseddelta}></Tiles>
+        <Tiles value="Deceased" cardColor="#ef5350" countTotal={this.state.consolidatedCount.deaths} countDelta={this.state.consolidatedDeltaCount.deltadeaths}></Tiles>
     </div>
       <Table size="small" aria-label="a dense table" className="table fadeInUp" style={{animationDelay: '1s'}}>
         <TableHead>

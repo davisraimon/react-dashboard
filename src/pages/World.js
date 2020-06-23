@@ -18,7 +18,8 @@ class World extends React.Component {
     this.state = {
       countryData : [],
       countryDataSelected : [],
-      currentPage : 0
+      currentPage : 0,
+      global : {}
     }
   this.pageChange = this.pageChange.bind(this);
   }
@@ -41,19 +42,25 @@ class World extends React.Component {
         c=c+list[i].TotalRecovered
       }
       console.log(a,b,c)
-
+      this.setState({global:findResponse.Global}) 
+      console.log('global',findResponse.Global)
     })
   }
 
   render() {
     return (
       <div>
-      <AppBar style={{height:48}}></AppBar>
-      <h4>WorldWide Cases Summarized</h4>
       <div style={{flexDirection:'row',display:'flex'}}>
       <div>
       <TableContainer style={{width:800,marginTop:48}} component={Paper}>
       <h4 style={{paddingLeft:10}}>WorldWide Corona Cases Summarized</h4>
+      <div style={{flexDirection:'row',display:'flex'}}>
+        <Tiles value="Confirmed" cardColor="#ffecb3" countTotal={this.state.global.TotalConfirmed} countDelta={this.state.global.NewConfirmed}></Tiles>
+        <div style={{width:25}}></div>
+        <Tiles value="Recovered" cardColor="#c5e1a5" countTotal={this.state.global.TotalRecovered} countDelta={this.state.global.NewRecovered}></Tiles>
+        <div style={{width:25}}></div>
+        <Tiles value="Deceased" cardColor="#ef5350" countTotal={this.state.global.TotalDeaths} countDelta={this.state.global.NewDeaths}></Tiles>
+      </div>
         <Table size="small" aria-label="a dense table" className="table fadeInUp" style={{animationDelay: '1s'}}>
           <TableHead>
             <TableRow>

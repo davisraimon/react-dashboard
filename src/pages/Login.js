@@ -3,12 +3,12 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import TextField from '@material-ui/core/TextField';
 import { Paper, Container } from '@material-ui/core';
+import fire from '../firebase'
 
 class Login extends React.Component {
   constructor(props){
     super(props);  
   }
-  
   render() {
     return (
       <Router>
@@ -34,7 +34,7 @@ class Login extends React.Component {
 
                 <div style={{padding:10}}><button type="submit" className="btn btn-primary btn-block" >Submit</button></div>
                 <p style={{padding:10}} className="forgot-password text-right">
-                    <a href="#">Forgot password?</a>
+                    <a href="#">Forgot password</a>
                 </p>
             </Paper>
             </Container>      

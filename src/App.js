@@ -6,6 +6,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Home from './pages/Home'
 import Login from './pages/Login'
 import World from './pages/World'
+import Dashoard from './pages/Dashboard'
+import Time from './pages/Time';
 
 class App extends React.Component {
   constructor(props){
@@ -19,6 +21,8 @@ class App extends React.Component {
           <Route path="/" exact component={Login} />
           <Route path="/home" component={Home} />
           <Route path="/world" component={World} />
+          <Route path="/dashboard" component={Dashoard} />
+          <Route path="/time" component={Time} />
         </div>
       </Router>
     );
