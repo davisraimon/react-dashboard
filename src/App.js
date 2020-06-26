@@ -1,13 +1,14 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { HashRouter as Router, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Home from './pages/Home'
 import Login from './pages/Login'
 import World from './pages/World'
 import Dashoard from './pages/Dashboard'
 import Time from './pages/Time';
+import CRUD from './pages/CRUD';
 
 class App extends React.Component {
   constructor(props){
@@ -23,6 +24,7 @@ class App extends React.Component {
           <Route path="/world" component={World} />
           <Route path="/dashboard" component={Dashoard} />
           <Route path="/time" component={Time} />
+          <Route path="/crud" component={CRUD} />
         </div>
       </Router>
     );
